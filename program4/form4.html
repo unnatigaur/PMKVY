@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submit Form</title>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        font-size: 0.8rem;
+      }
+
+      .container {
+        max-width: 400px;
+      }
+    </style>
+  </head>
+
+  <body class="text-center">
+    <div class="container mt-5">
+      <h2 class="mb-4">Program Registration Form</h2>
+      <form class="text-left" id="submitForm">
+        <div class="form-group">
+          <label for="programName">Name of the Program:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="programName"
+            name="programName"
+            required
+            value="Amrut 2.0"
+            disabled="disabled"
+          />
+        </div>
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address:</label>
+          <input
+            type="email"
+            class="form-control"
+            id="email"
+            name="email"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="phone">Phone Number:</label>
+          <input
+            type="tel"
+            class="form-control"
+            id="phone"
+            name="phone"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="employeeId">Employee ID:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="employeeid"
+            name="employeeId"
+          />
+        </div>
+        <div class="form-group">
+          <label for="currentCity">Current City:</label>
+          <input
+            type="text"
+            class="form-control"
+            id="currentCity"
+            name="currentCity"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label for="preferenceType">Preference Type:</label>
+          <select
+            class="form-control"
+            id="preferenceType"
+            name="preferenceType"
+            required
+          >
+            <option value="online">Online</option>
+            <option value="offline">Offline</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+        authDomain: "mywebproject-26e7d.firebaseapp.com",
+        databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+        projectId: "mywebproject-26e7d",
+        storageBucket: "mywebproject-26e7d.appspot.com",
+        messagingSenderId: "450920042676",
+        appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+      };
+
+      firebase.initializeApp(firebaseConfig);
+      // signup page authentication code
+      var mess = firebase.database().ref("program4");
+
+      document
+        .getElementById("submitForm")
+        .addEventListener("submit", submitfun);
+
+      function submitfun(e) {
+        e.preventDefault();
+        var name_temp = getInputVal("name");
+        var email_temp = getInputVal("email");
+        var phone_temp = getInputVal("phone");
+        var empid_temp = getInputVal("employeeid");
+        var preferenceType_temp = getInputVal("preferenceType");
+        var currentCity_temp = getInputVal("currentCity");
+
+        console.log(
+          name_temp,
+          empid_temp,
+          phone_temp,
+          email_temp,
+          preferenceType_temp,
+          currentCity_temp
+        );
+        saveMessage(
+          name_temp,
+          email_temp,
+          phone_temp,
+          empid_temp,
+          preferenceType_temp,
+          currentCity_temp
+        );
+        alert("Form Submitted Successfully !!!");
+        window.location = "./frontend.html";
+        //document.getElementById('submitForm').reset();
+      }
+
+      function getInputVal(id) {
+        return document.getElementById(id).value;
+      }
+
+      function saveMessage(
+        name,
+        email,
+        phone,
+        empid,
+        preferenceType,
+        currentCity
+      ) {
+        var data = mess.push();
+        data.set({
+          name: name,
+          email: email,
+          phone: phone,
+          empid: empid,
+          preferenceType: preferenceType,
+          currentCity: currentCity,
+        });
+      }
+    </script>
+  </body>
+</html>
