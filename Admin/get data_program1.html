@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Firebase Data Table</title>
+    <style>
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      th,
+      td {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+      th {
+        background-color: #f2f2f2;
+      }
+    </style>
+  </head>
+  <button id="btn" onclick="fetchallData1()">Get Data</button>
+  <body>
+    <table id="data-table">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Email</th>
+          <th>Phone</th>
+          <th>Employe_ID</th>
+          <th>Current City</th>
+          <th>Preferred_City</th>
+        </tr>
+      </thead>
+      <tbody id="data-body">
+        <!-- Data rows will be inserted here dynamically -->
+      </tbody>
+    </table>
+
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
+    <script>
+      // Firebase configuration
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+        authDomain: "mywebproject-26e7d.firebaseapp.com",
+        databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+        projectId: "mywebproject-26e7d",
+        storageBucket: "mywebproject-26e7d.appspot.com",
+        messagingSenderId: "450920042676",
+        appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+      };
+
+      // Initialize Firebase
+      firebase.initializeApp(firebaseConfig);
+
+      // Function to fetch all data from Firebase and populate the table
+      function fetchallData1() {
+        const tableBody = document.getElementById("data-body");
+
+        const dbRef = firebase.database().ref("program1");
+
+        dbRef.once(
+          "value",
+          (snapshot) => {
+            snapshot.forEach((childSnapshot) => {
+              const data = childSnapshot.val();
+              const name = data.name;
+              const empid = data.empid;
+              const email = data.email;
+              const phone = data.phone;
+              const preferenceType = data.preferenceType;
+              const currentCity = data.currentCity;
+
+              const row = document.createElement("tr");
+              row.innerHTML = `
+            <td>${name}</td>
+            <td>${email}</td>
+            <td>${phone}</td>
+            <td>${empid}</td>
+            <td>${currentCity}</td>
+            <td>${preferenceType}</td>
+
+
+          `;
+              tableBody.appendChild(row);
+            });
+          },
+          (error) => {
+            console.error("Error fetching data:", error);
+          }
+        );
+      }
+
+      // Call the function to fetch data and populate the table when the page loads
+      //window.onload = fetchallData;
+    </script>
+  </body>
+</html>

@@ -1,0 +1,765 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Page</title>
+  <link rel="stylesheet" href="/style.css">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    
+</head>
+<style type="text/css">
+  body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th,
+  td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+  }
+
+  th {
+    background-color: #f2f2f2;
+  }
+
+  .car {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 30px;
+    padding: 10px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+    width: 70%;
+    height: 480px;
+    background: #12c2e9;
+    background: linear-gradient(to right, #2c498d, #198754);
+  }
+
+  .left-container1 {
+    background: white;
+    flex: 1;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 430px;
+    padding: 10px;
+    margin: 30px;
+    border-radius: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .right-container1 {
+    background: white;
+    flex: 1;
+    max-width: 70%;
+    height: 430px;
+    padding: 10px;
+    margin: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  @media only screen and (max-width: 860px) {
+    .car {
+      flex-direction: column;
+      margin: 10px;
+      height: auto;
+      width: 90%;
+    }
+
+    .left-container1 {
+      flex: 1;
+      max-width: 100%;
+    }
+  }
+
+  @media only screen and (max-width: 600px) {
+    .car {
+      flex-direction: column;
+      margin: 10px;
+    }
+
+    .left-container1 {
+      flex: 1;
+      max-width: 100%;
+    }
+  }
+
+  .img1 {
+    width: 200px;
+    height: 200px;
+    max-width: 200px;
+    border-radius: 50%;
+    margin: 10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  }
+
+  .gradienttext {
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .gradienttext {
+    text-align: center;
+    font-size: 24px;
+    margin-bottom: 5px;
+  }
+
+  .gradienttext {
+    background-image: linear-gradient(to right, #ee00ff 0%, #fbff00 100%);
+    color: transparent;
+    -webkit-background-clip: text;
+
+  }
+
+  .p {
+    font-size: 18px;
+    margin-bottom: 20px;
+    color: black
+  }
+
+  .table {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 280px;
+    border-collapse: collapse;
+  }
+
+  .td {
+
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    color: black;
+  }
+
+  td:first-child {
+    font-weight: bold;
+  }
+
+  .credit a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: 800;
+  }
+
+  .credit {
+    color: #fff;
+    text-align: center;
+    margin-top: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+  }
+
+
+
+  header {
+    background-color: #2c498d;
+    color: #fff;
+    padding: 20px 0;
+  }
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  h1 {
+    margin: 0;
+  }
+
+  .buttons button {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 10px 15px;
+    margin-left: 10px;
+  }
+
+  .buttons button.active {
+    background-color: #fff;
+    color: black;
+  }
+
+  .content {
+    padding: 20px;
+  }
+
+  .tab {
+    display: none;
+
+  }
+
+  .tab.active {
+    display: block;
+  }
+
+  .carousel {
+    margin-bottom: 4rem;
+  }
+
+  div {
+    display: block;
+  }
+
+  .carousel {
+    position: relative;
+  }
+
+  .footer {
+    background-image: url(./footer/footer1_bg.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding-top: 120px;
+    background-size: 100%;
+
+    font-size: 0.75em;
+  }
+
+  .rr {
+    display: block;
+    width: 100%;
+  }
+
+  .ft {
+    background-image: url(footer/footer1_bg.png);
+
+  }
+
+  .hd {
+    background-color: #05f887;
+    color: azure;
+  }
+
+  .text-bg-dark {
+    color: #fff !important;
+    background-color: #198754;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .ftt {
+
+    background-color: #30ca82;
+  }
+
+
+  .h {
+    background-color: orange;
+  }
+
+  .green {
+    color: #ffffff;
+    background-color: #198754;
+  }
+
+  .carousel {
+    margin-bottom: 4rem;
+  }
+
+  div {
+    display: block;
+  }
+
+  .carousel {
+    position: relative;
+  }
+
+  .footer {
+    background-image: url(./footer/footer1_bg.png);
+    background-position: center top;
+    background-repeat: no-repeat;
+    color: #fff;
+    padding-top: 120px;
+    background-size: 100%;
+
+    font-size: 0.75em;
+  }
+
+  .rr {
+    display: block;
+    width: 100%;
+  }
+
+  .ft {
+    background-image: url(footer/footer1_bg.png);
+
+  }
+
+  .hd {
+    background-color: #198754;
+    color: azure;
+  }
+
+  .text-bg-dark {
+    color: #fff !important;
+    background-color: #198754;
+  }
+
+  a:link {
+    text-decoration: none;
+  }
+
+  .about_website-h1 {
+    font-weight: bold;
+    font-size: 40px;
+    color: #356400;
+
+  }
+
+  .about_website-p {
+    font-size: 18px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .about_website-h3 {
+    font-weight: bold;
+    font-size: 25px;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .btn-1 {
+    align-items: center;
+  }
+  .container-footer{
+    max-width: 1200px;
+    padding: 0 20px;
+    margin: 0 auto;
+}
+</style>
+
+<body>
+  <header>
+    <div class="container">
+      <h1 id="admin_panel">Admin Panel</h1>
+      <div class="buttons">
+
+        <button id="adminBtn" onclick="openTab('admin');removevalue('about');">Admin</button>
+
+        <button id="programsBtn" onclick="openTab('programs'); removevalue('about');">Programs</button>
+        <button id="subscriberDataBtn" onclick="openTab('subscriberData'); removevalue('about');">Subscriber
+          Data</button>
+        <button id="contactusbtn" onclick="openTab('contacts'); removevalue('about');"> Contact Us</button>
+      </div>
+    </div>
+  </header>
+  <div class="content">
+    <div class="container">
+
+      <div id="about">
+        <h1 class="about_website-h1">ABOUT WEBSITE</h1>
+        <p class="about_website-p">
+          Pradhan Mantri Kaushal Vikas Yojana (PMKVY) is the flagship scheme of the Ministry of Skill Development and
+          Entrepreneurship (MSDE) implemented by National Skill Development Corporation (NSDC). The objective of this
+          Skill Certification scheme is to enable Indian youth to take up industry relevant skill training that will
+          help them in securing a better livelihood.
+        </p>
+        <h3 class="about_website-h3">SHORT TERM TRAINING</h3>
+        <p class="about_website-p">STT component imparted at PMKVY Training Centres (TC) is expected to benefit
+          candidates of Indian nationality who are either school/college dropouts or unemployed. Apart from providing
+          training according to the National Skills Qualification Framework (NSQF), TCs also impart training in soft
+          skills, entrepreneurship, financial and digital literacy. Upon successful completion of assessment, candidates
+          are provided placement assistance by Training Providers.</p>
+
+        <p class="about_website-p">PMKVY also focuses on improving access to credit and insurance for farmers. The
+          scheme facilitates the availability of institutional credit through various financing mechanisms such as Kisan
+          Credit Cards (KCCs), crop loans, and interest subvention schemes. Additionally, PMKVY promotes the adoption of
+          crop insurance schemes to provide financial protection to farmers against crop losses due to natural
+          calamities, pests, and diseases.</p>
+        <p class="about_website-p">
+          Capacity building and skill development form an integral part of PMKVY. The scheme provides training and
+          extension services to farmers on modern agricultural practices, technology adoption, and entrepreneurship
+          development. Through farmer training programs, demonstrations, workshops, and exposure visits, PMKVY aims to
+          enhance the technical know-how and decision-making skills of farmers, empowering them to make informed choices
+          and adopt best practices in agriculture.
+        </p>
+      </div>
+
+    </div>
+
+
+    <div id="admin" class="tab">
+
+      <div class="container">
+        <div class="car">
+          <div class="left-container1">
+            <img src="/albums/admin.jpg" alt="Profile Image" class="img1">
+            <h2 class="gradienttext">Siddarth Agarwal</h2>
+            <p class="p">Web Developer</p>
+          </div>
+          <div class="right-container1">
+            <h3 class="gradienttext">Profile Details</h3>
+            <table class="table">
+              <tr>
+                <td class="td">Name :</td>
+                <td class="td">Siddarth Agarwal</td>
+              </tr>
+              <tr>
+                <td class="td">Mobile :</td>
+                <td>+91-7426060234 , +91-9587002348</td>
+              </tr>
+              <tr>
+                <td class="td">Email :</td>
+                <td class="td">siddarthagarwal742@gmail.com</td>
+              </tr>
+              <tr>
+                <td class="td">LinkedIn :</td>
+                <td class="td"><a
+                    href="https://www.linkedin.com/in/siddarth-agarwal-a37277204/">https://www.linkedin.com/in/siddarth-agarwal-a37277204/</a>
+                </td>
+              </tr>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+  <div id="programs" class="tab">
+    <div class="album py-5 bg-body-tertiary">
+      <div class="container">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+          <div class="col">
+            <div class="card shadow-sm">
+              <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+              <img src="/albums/alb5.jpg" alt="" />
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="get data_program1.html" class="btn btn-info" role="button">Get Data</a>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                  </div>
+                  <a href="/program1/form1.html" class="btn btn-info" role="button">Insert Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+              <img src="/albums/ab4.jpg" alt="" />
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <a href="get data_program2.html" class="btn btn-info" role="button">Get Data</a>
+                    <!-- <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
+                  </div>
+                  <a href="/program2/form2.html" class="btn btn-info" role="button">Insert Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+              <img src="/albums/yoga.jpg" alt="" />
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="get data_program3.html" class="btn btn-info" role="button">Get Data</a>
+                  <!-- <div class="btn-group">
+                    <button  type="button" class="btn btn-sm btn-outline-secondary" >
+                      <a href="www.google.com">View</a></button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div> -->
+                  <a href="/program3/form3.html" class="btn btn-info" role="button">Insert Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col">
+            <div class="card shadow-sm">
+              <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+              <img src="/albums/alb1.jpg" alt="_blank" />
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="get data_program4.html" class="btn btn-info" role="button">Get Data</a>
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div> -->
+                  <a href="/program4/form4.html" class="btn btn-info" role="button">Insert Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card shadow-sm">
+              <img src="/albums/desh1.jpg" alt="" />
+              <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg> -->
+              <div class="card-body">
+                <!-- <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p> -->
+                <div class="d-flex justify-content-between align-items-center">
+                  <a href="get data_program5.html" class="btn btn-info" role="button">Get Data</a>
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                  </div> -->
+                  <a href="/program5/form5.html" class="btn btn-info" role="button">Insert Data</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Add programs content here -->
+  </div>
+
+<div class="container-footer">
+  <div id="contacts" class="tab">
+    <button id="btn1" class="btn-1" onclick="fetchallData6()">Get Data</button>
+    <table id="data-table" align="center">
+      <thead>
+        <tr>
+
+          <th>Name</th>
+          <th>Email</th>
+          <th>Message</th>
+      <tbody id="data-bodycontact">
+        <!-- Data rows will be inserted here dynamically -->
+      </tbody>
+      </tr>
+      </thead>
+    </table>
+  </div>
+</div>
+
+  <div class="container-footer">
+    <div id="subscriberData" class="tab">
+      <button id="btn2" class="btn-2" onclick="fetchallData7()">Get Data</button>
+      <table id="data-table" align="center">
+        <thead>
+          <tr>
+
+            <th>Email</th>
+
+          </tr>
+        </thead>
+        <tbody id="data-body">
+          <!-- Data rows will be inserted here dynamically -->
+        </tbody>
+      </table>
+
+    </div>
+  </div>
+  </div>
+
+
+
+
+  <!-- footer -->
+  <hr />
+
+  <div class="green">
+    <div class="container-fluid">
+      <div class="container-footer">
+        <footer class="py-5">
+          <div class="row">
+            <div class="col-6 col-md-2 mb-3">
+              <h5>Section</h5>
+              <ul class="nav flex-column">
+                <!-- <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Home</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Features</a></li>
+            <li class="nav-item mb-2"><a href="#" class="nav-link p-0 text-body-secondary">Pricing</a></li> -->
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">FAQs</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">About</a>
+                </li>
+                <li class="nav-item mb-2">
+                  <a href="./contactus.html" class="nav-link p-0 text-body-secondary">Contact Us</a>
+                <li class="nav-item mb-2">
+                  <a href="#" class="nav-link p-0 text-body-secondary">Pricing</a>
+                </li>
+                </li>
+              </ul>
+            </div>
+
+            <div class="col-md-5 offset-md-1 mb-3">
+              <form id="sub">
+                <h5>Subscribe to our newsletter</h5>
+                <p>Monthly digest of what's new and exciting from us.</p>
+                <div class="d-flex flex-column flex-sm-row w-100 gap-2">
+                  <label for="Email" class="visually-hidden">Email address</label>
+                  <input id="contactemail" type="text" class="form-control" placeholder="Email address" />
+                  <button class="btn btn-primary" type="submit" >Subscribe</button>
+                </div>
+              </form>
+            </div>
+          </div>
+
+          <div class="d-flex flex-column flex-sm-row justify-content-between py-4 my-4 border-top">
+            <p>© 2024 Company, Inc. All rights reserved.</p>
+            <ul class="list-unstyled d-flex">
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                    <use xlink:href="#twitter"></use>
+                  </svg></a>
+              </li>
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                    <use xlink:href="#instagram"></use>
+                  </svg></a>
+              </li>
+              <li class="ms-3">
+                <a class="link-body-emphasis" href="#"><svg class="bi" width="24" height="24">
+                    <use xlink:href="#facebook"></use>
+                  </svg></a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-database.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+ integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.3/firebase-auth.js"></script>
+  <script>
+    function openTab(tabName) {
+      var i, tabContent, tabLinks;
+
+      tabContent = document.getElementsByClassName("tab");
+      for (i = 0; i < tabContent.length; i++) {
+        tabContent[i].style.display = "none";
+      }
+
+      tabLinks = document.getElementsByClassName("buttons")[0].getElementsByTagName("button");
+      for (i = 0; i < tabLinks.length; i++) {
+        tabLinks[i].classList.remove("active");
+      }
+
+      document.getElementById(tabName).style.display = "block";
+      document.getElementById(tabName + "Btn").classList.add("active");
+    }
+    function removevalue() {
+      document.getElementById("about").remove();
+    }
+    // Firebase configuration
+    // Firebase configuration
+    var firebaseConfig = {
+      apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+      authDomain: "mywebproject-26e7d.firebaseapp.com",
+      databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+      projectId: "mywebproject-26e7d",
+      storageBucket: "mywebproject-26e7d.appspot.com",
+      messagingSenderId: "450920042676",
+      appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Function to fetch all data from Firebase and populate the table
+    function fetchallData7() {
+      const tableBody = document.getElementById("data-body");
+
+      const dbRef = firebase.database().ref("Subscribe");
+
+      dbRef.once(
+        "value",
+        (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            const email = data.email;
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${email}</td>
+          `;
+            tableBody.appendChild(row);
+          });
+        },
+        (error) => {
+          console.error("Error fetching data:", error);
+        }
+      );
+    }
+
+    // 
+    function fetchallData6() {
+      const tableBody = document.getElementById("data-bodycontact");
+
+      const dbRef = firebase.database().ref("Contact Us");
+
+      dbRef.once(
+        "value",
+        (snapshot) => {
+          snapshot.forEach((childSnapshot) => {
+            const data = childSnapshot.val();
+            const name = data.name;
+            const email = data.email;
+            const message = data.message;
+
+
+            const row = document.createElement("tr");
+            row.innerHTML = `
+            <td>${name}</td>
+            <td>${email}</td>
+            <td>${message}</td>
+
+
+          `;
+            tableBody.appendChild(row);
+          });
+        },
+        (error) => {
+          console.error("Error fetching data:", error);
+        }
+      );
+    }
+
+
+    // Function to fetch all data from Firebase and populate the table
+
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+    crossorigin="anonymous"></script>
+</body>
+
+</html>
