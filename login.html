@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f4;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+
+      .login-container {
+        background-color: #fff;
+        padding: 40px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+        text-align: center;
+        max-width: 400px;
+        width: 100%;
+      }
+
+      h2 {
+        margin-bottom: 20px;
+        color: #333;
+      }
+
+      .input-container {
+        margin-bottom: 20px;
+        text-align: left;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 5px;
+        color: #666;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font-size: 16px;
+        box-sizing: border-box;
+        transition: border-color 0.3s;
+      }
+
+      input[type="text"]:focus,
+      input[type="password"]:focus {
+        border-color: #007bff;
+      }
+
+      .login-btn {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .login-btn:hover {
+        background-color: #0056b3;
+      }
+
+      .google-login {
+        margin-top: 20px;
+      }
+
+      .login-with-google-btn {
+        background-color: #dd4b39;
+        color: #fff;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s;
+      }
+
+      .login-with-google-btn:hover {
+        background-color: #c53727;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="login-container">
+      <h2>Login</h2>
+      <form action="#" method="POST" onsubmit="login(event)">
+        <div class="input-container">
+          <label for="email">Email:</label>
+          <input type="text" id="email" name="email" required />
+        </div>
+        <div class="input-container">
+          <label for="password">Password:</label>
+          <input type="password" id="password" name="password" required />
+        </div>
+        <button type="submit" class="login-btn" id="logincheck">Login</button>
+      </form>
+      <div class="google-login">
+        <button class="login-with-google-btn" id="googlelogin">
+          Login with Google
+        </button>
+      </div>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth.js"></script>
+    <script type="module" src="login.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+        authDomain: "mywebproject-26e7d.firebaseapp.com",
+        databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+        projectId: "mywebproject-26e7d",
+        storageBucket: "mywebproject-26e7d.appspot.com",
+        messagingSenderId: "450920042676",
+        appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+      };
+
+      //login page authentication code
+      firebase.initializeApp(firebaseConfig);
+      async function login(e) {
+        e.preventDefault();
+        /*const email = document.querySelector("#email");
+        const password = document.querySelector("#password");
+        console.log(email.value, password.value);
+        try {
+          const result = await firebase
+            .auth()
+            .createUserWithEmailAndPassword(email.value, password.value);
+          console.log(result);
+          alert("login successful");
+          window.location.href = "index.html";
+        } catch (err) {
+          console.log(err);
+        }*/
+      }
+    
+    </script>
+  </body>
+</html>

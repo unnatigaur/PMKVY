@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Signup Page</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100vh;
+      }
+
+      .signup-container {
+        background-color: #fff;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        text-align: center;
+      }
+
+      .signup-container h2 {
+        color: #333;
+        margin-bottom: 20px;
+      }
+
+      .signup-form input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+      }
+
+      .signup-form button {
+        width: 100%;
+        padding: 10px;
+        background-color: #3498db;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+
+      .signup-form p {
+        margin: 10px 0;
+        color: #888;
+      }
+
+      .signup-form .separator {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .signup-form .separator::before,
+      .signup-form .separator::after {
+        content: "";
+        flex: 1;
+        border-bottom: 1px solid #ccc;
+      }
+
+      .signup-form .separator span {
+        margin: 0 10px;
+        color: #888;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="signup-container">
+      <h2>Sign Up</h2>
+      <form
+        class="signup-form"
+        id="signup"
+        method="POST"
+        onsubmit="login(event)"
+      >
+        <input type="text" id="name" placeholder="Name" required />
+        <input type="text" id="empid" placeholder="Emp ID" required />
+        <input type="email" id="email" placeholder="Email" required />
+        <input type="password" id="password" placeholder="Password" required />
+        <button type="submit">SignUp</button>
+        <p>
+          Already have an account?
+          <a href="./login.html" target="_blank">Login here</a>
+        </p>
+
+        <div class="separator">
+          <span>or</span>
+        </div>
+        <div class="social-icons">
+          <a href="https://www.facebook.com/" title="Sign Up with Facebook">
+            <img
+              src="./albums/facebook.jpeg"
+              alt="_blank"
+              width="25"
+              height="25"
+          /></a>
+          <a href="https://www.google.com" title="Sign Up with Google">
+            <img src="./albums/google.jpeg" alt="_blank" width="25" height="25"
+          /></a>
+          <a href="https://www.twitter.com" title="Sign Up with Twitter">
+            <img
+              src="./albums/twitter.jpeg"
+              alt="_blank"
+              width="25"
+              height="25"
+          /></a>
+        </div>
+      </form>
+    </div>
+    <script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+    <script>
+      var firebaseConfig = {
+        apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+        authDomain: "mywebproject-26e7d.firebaseapp.com",
+        databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+        projectId: "mywebproject-26e7d",
+        storageBucket: "mywebproject-26e7d.appspot.com",
+        messagingSenderId: "450920042676",
+        appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+      };
+      firebase.initializeApp(firebaseConfig);
+
+      var mess = firebase.database().ref("Signup");
+
+      document.getElementById("signup").addEventListener("submit", submitForm);
+
+      function submitForm(e) {
+        e.preventDefault();
+        var name_temp = getInputVal("name");
+        var empid_temp = getInputVal("empid");
+        var email_temp = getInputVal("email");
+        var password_temp = getInputVal("password");
+        console.log(name_temp, empid_temp, empid_temp, password_temp);
+        saveMessage(name_temp, email_temp, empid_temp, password_temp);
+        document.getElementById("signup").reset();
+      }
+
+      function getInputVal(id) {
+        return document.getElementById(id).value;
+      }
+
+      function saveMessage(name, email, empid, password) {
+        var data = mess.push();
+        data.set({
+          name: name,
+          email: email,
+          empid: empid,
+          password: password,
+        });
+      }
+
+      // function to authentication in signup page
+      async function login(e) {
+        e.preventDefault();
+        const email = document.querySelector("#email");
+        const password = document.querySelector("#password");
+        console.log(email.value, password.value);
+        try {
+          const result = await firebase
+            .auth()
+            .createUserWithEmailAndPassword(email.value, password.value);
+          console.log(result);
+          window.location.href = "/profileindex.html";
+          alert("login successful");
+        } catch (err) {
+          console.log(err);
+        }
+      }
+    </script>
+  </body>
+</html>

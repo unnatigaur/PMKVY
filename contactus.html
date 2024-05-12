@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--divinectorweb.com-->
+
+<head>
+  <meta charset="UTF-8" />
+  <title>contact form</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!--<link rel="stylesheet" href="style.css">-->
+  <style>
+    body {
+      background: #e8e8e8;
+    }
+
+    .form-area {
+      padding-top: 7%;
+    }
+
+    .row.single-form {
+      box-shadow: 0 2px 20px -5px rgba(0, 0, 0, 0.5);
+    }
+
+    .left {
+      background: blueviolet;
+      padding: 200px 98px;
+    }
+
+    .left h2 {
+      font-family: poppins;
+      color: #fff;
+      font-weight: 700;
+      font-size: 48px;
+    }
+
+    .left h2 span {
+      font-weight: 100;
+    }
+
+    .single-form {
+      background: #fff;
+    }
+
+    .right {
+      padding: 70px 100px;
+      position: relative;
+    }
+
+    .right i {
+      position: absolute;
+      font-size: 80px;
+      left: -27px;
+      top: 40%;
+      color: #fff;
+    }
+
+    .form-control {
+      border: 2px solid #000;
+    }
+
+    .right button {
+      border: none;
+      border-radius: 0;
+      background: #252525;
+      width: 180px;
+      color: #fff;
+      padding: 15px 0;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      cursor: pointer;
+    }
+
+    .right button:hover {
+      background-color: #252525;
+    }
+
+    /*responsive*/
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      .right i {
+        top: -52px;
+        transform: rotate(90deg);
+        left: 50%;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .left {
+        padding: 90px 15px;
+        text-align: center;
+      }
+
+      .left h2 {
+        font-size: 25px;
+      }
+
+      .right {
+        padding: 25px;
+      }
+
+      .right i {
+        top: -52px;
+        transform: rotate(90deg);
+        left: 46%;
+      }
+
+      .right button {
+        width: 150px;
+        padding: 12px 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="form-area">
+    <div class="container">
+      <div class="row single-form g-0">
+        <div class="col-sm-12 col-lg-6">
+          <div class="left">
+            <h2><span>Contact Us for</span> <br />Business Enquies</h2>
+          </div>
+        </div>
+        <div class="col-sm-12 col-lg-6">
+          <div class="right">
+            <i class="fa fa-caret-left"></i>
+            <form id="contactus">
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Your Name</label>
+                <input type="text" class="form-control" id="name" aria-describedby="emailHelp" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" class="form-control" id="email" aria-describedby="emailHelp" />
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Message</label>
+                <textarea type="password" class="form-control" id="message"></textarea>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+<script src="https://www.gstatic.com/firebasejs/3.7.4/firebase.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-database.js"></script>
+<script>
+  var firebaseConfig = {
+    apiKey: "AIzaSyCNPHDJfqWuz6M0dV7YD497sRR51Bifd6w",
+    authDomain: "mywebproject-26e7d.firebaseapp.com",
+    databaseURL: "https://mywebproject-26e7d-default-rtdb.firebaseio.com",
+    projectId: "mywebproject-26e7d",
+    storageBucket: "mywebproject-26e7d.appspot.com",
+    messagingSenderId: "450920042676",
+    appId: "1:450920042676:web:6b5a46dcd295bea70dc7e1",
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  // Contact Us firebase code
+  var mess = firebase.database().ref("Contact Us");
+
+  document.getElementById("contactus").addEventListener("submit", submitfun);
+
+  function submitfun(e) {
+    e.preventDefault();
+    var name_temp = getInputVal("name");
+    var email_temp = getInputVal("email");
+    var message_temp = getInputVal("message");
+
+    console.log(name_temp, email_temp, message_temp);
+    saveMessage(name_temp, email_temp, message_temp);
+    alert("Your message has been sent successfully");
+    window.location.href = "index.html";
+
+    document.getElementById("submitForm").reset();
+  }
+
+  function getInputVal(id) {
+    return document.getElementById(id).value;
+  }
+
+  function saveMessage(name, email, message) {
+    var data = mess.push();
+    data.set({
+      name: name,
+      email: email,
+      message: message,
+    });
+    if (submitfun) {
+    }
+  }
+</script>
+
+</html>

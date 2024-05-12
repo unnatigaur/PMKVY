@@ -1,0 +1,53 @@
+.carousel {
+  margin-bottom: 4rem;
+}
+div {
+  display: block;
+}
+.carousel {
+  position: relative;
+}
+.footer {
+  background-image: url(./footer/footer1_bg.png);
+  background-position: center top;
+  background-repeat: no-repeat;
+  color: #fff;
+  padding-top: 120px;
+  background-size: 100%;
+
+  font-size: 0.75em;
+}
+.rr {
+  display: block;
+  width: 100%;
+}
+.ft {
+  background-image: url(footer/footer1_bg.png);
+}
+.hd {
+  background-color: #05f887;
+  color: azure;
+}
+
+.text-bg-dark {
+  color: #fff !important;
+  background-color: #198754;
+}
+a:link {
+  text-decoration: none;
+}
+.ftt {
+  background-color: #30ca82;
+}
+
+.h {
+  background-color: orange;
+}
+
+.green {
+  color: #ffffff;
+  background-color: #198754;
+}
+.hd {
+  background-color: #198754;
+}
