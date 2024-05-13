@@ -1111,5 +1111,43 @@ dl, ol, ul {
 
   
 }
+/* Define media queries for different screen sizes */
+@media screen and (max-width: 768px) {
+  /* Adjust the layout for smaller screens */
+  .site_header {
+    padding: 10px;
+  }
+  .navbar-brand.ext img {
+    max-width: 100px;
+    height: auto;
+  }
+  .navbar-brand.ext span {
+    display: none;
+  }
+  .mygov_social_wrap {
+    display: none;
+  }
+  .icon {
+    display: block;
+  }
+  .secondary_head .navbar-brand.logo img {
+    max-width: 80px;
+    height: auto;
+  }
+}
+
+/* Define further media queries for even smaller screens if needed */
+@media screen and (max-width: 576px) {
+  /* Further adjustments for very small screens */
+  .navbar-brand.ext img {
+    max-width: 80px;
+  }
+  .secondary_head .navbar-brand.logo img {
+    max-width: 60px;
+  }
+}
+
+/* You can add more media queries as needed for other screen sizes */
+
 
 
